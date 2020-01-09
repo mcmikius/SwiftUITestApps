@@ -13,8 +13,19 @@ struct NewsFeedView: View {
     
     var body: some View {
         List(newsFeed) { (article: NewsListItem) in
-            Text("\(article.title)")
+            NewsListItemView(article: article)
         }
+    }
+}
+
+struct NewsListItemView: View {
+    var article: NewsListItem
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text("\(article.title)").font(.headline)
+            Text("\(article.author)").font(.subheadline)
+        }.padding()
     }
 }
 

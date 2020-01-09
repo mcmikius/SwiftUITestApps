@@ -23,6 +23,10 @@ class NewsFeed: ObservableObject, RandomAccessCollection {
     
     var urlBase = "https://newsapi.org/v2/everything?q=apple&apiKey=31095a21e4cf49589631c1d069c2309c&language=en&page=1"
     
+    init() {
+        loadMoreArticles()
+    }
+    
     subscript(position: Int) -> NewsListItem {
         return newsListItems[position]
     }
