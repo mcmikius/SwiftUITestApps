@@ -14,14 +14,14 @@ class NewsFeed: ObservableObject, RandomAccessCollection {
     typealias Element = NewsListItem
     @Published var newsListItems = [NewsListItem]()
     
-    var startIndex: Int {
-        newsListItems.startIndex
-    }
-    var endIndex: Int {
-        newsListItems.startIndex
-    }
+    var startIndex: Int { newsListItems.startIndex }
+    var endIndex: Int { newsListItems.endIndex }
     
-    var urlBase = "https://newsapi.org/v2/everything?q=apple&apiKey=31095a21e4cf49589631c1d069c2309c&language=en&page=1"
+    var nextPageToLoad = 1
+    var currentlyLoading = false
+    var doneLoading = false
+    
+    var urlBase = "https://newsapi.org/v2/everything?q=apple&apiKey=31095a21e4cf49589631c1d069c2309c&language=en&page="
     
     init() {
         loadMoreArticles()
@@ -31,25 +31,51 @@ class NewsFeed: ObservableObject, RandomAccessCollection {
         return newsListItems[position]
     }
     
-    func loadMoreArticles() {
-        let url = URL(string: urlBase)!
+    func loadMoreArticles(currentItem: NewsListItem? = nil) {
+        if !shouldLoadMoreData(currentItem: currentItem) {
+            return
+        }
+        currentlyLoading = true
+        let urlString = "\(urlBase)\(nextPageToLoad)"
+        let url = URL(string: urlString)!
         let task = URLSession.shared.dataTask(with: url, completionHandler: parseArticlesFromResponse(data:response:error:))
         task.resume()
+    }
+    
+    func shouldLoadMoreData(currentItem: NewsListItem? = nil) -> Bool {
+        if currentlyLoading || doneLoading {
+            return false
+        }
+        guard let currentItem = currentItem else {
+            return true
+        }
+        
+        for n in (newsListItems.count - 4)...(newsListItems.count-1) {
+            if n >= 0 && currentItem.uuid == newsListItems[n].uuid {
+                return true
+            }
+        }
+        return false
     }
     
     func parseArticlesFromResponse(data: Data?, response: URLResponse?, error: Error?) {
         guard error == nil else {
             print("Error\(error!)")
+            currentlyLoading = false
             return
         }
         guard let data = data else {
             print("No data found")
+            currentlyLoading = false
             return
         }
         
         let newArticles = parseArticlesFromData(data: data)
         DispatchQueue.main.async {
             self.newsListItems.append(contentsOf: newArticles)
+            self.nextPageToLoad += 1
+            self.currentlyLoading = false
+            self.doneLoading = (newArticles.count == 0)
         }
     }
     
