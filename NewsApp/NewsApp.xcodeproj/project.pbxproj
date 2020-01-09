@@ -13,6 +13,7 @@
 		F3E0203123C72F1F00FF0A86 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3E0203023C72F1F00FF0A86 /* Assets.xcassets */; };
 		F3E0203423C72F1F00FF0A86 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3E0203323C72F1F00FF0A86 /* Preview Assets.xcassets */; };
 		F3E0203723C72F1F00FF0A86 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F3E0203523C72F1F00FF0A86 /* LaunchScreen.storyboard */; };
+		F3E0204023C7963600FF0A86 /* NewsFeedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3E0203F23C7963600FF0A86 /* NewsFeedModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		F3E0203323C72F1F00FF0A86 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F3E0203623C72F1F00FF0A86 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F3E0203823C72F1F00FF0A86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F3E0203F23C7963600FF0A86 /* NewsFeedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 		F3E0202923C72F1F00FF0A86 /* NewsApp */ = {
 			isa = PBXGroup;
 			children = (
+				F3E0203E23C7960600FF0A86 /* Model */,
 				F3E0202A23C72F1F00FF0A86 /* AppDelegate.swift */,
 				F3E0202C23C72F1F00FF0A86 /* SceneDelegate.swift */,
 				F3E0202E23C72F1F00FF0A86 /* ContentView.swift */,
@@ -73,6 +76,14 @@
 				F3E0203323C72F1F00FF0A86 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		F3E0203E23C7960600FF0A86 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F3E0203F23C7963600FF0A86 /* NewsFeedModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,6 +157,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3E0204023C7963600FF0A86 /* NewsFeedModel.swift in Sources */,
 				F3E0202B23C72F1F00FF0A86 /* AppDelegate.swift in Sources */,
 				F3E0202D23C72F1F00FF0A86 /* SceneDelegate.swift in Sources */,
 				F3E0202F23C72F1F00FF0A86 /* ContentView.swift in Sources */,
